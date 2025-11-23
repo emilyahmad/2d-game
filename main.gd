@@ -2,14 +2,14 @@ extends Node
 
 @export var mob_scene: PackedScene
 var score
-
+const TARGET_SCORE := 10
 
 func game_over():
-	$ScoreTimer.stop()
+	#$ScoreTimer.stop()
 	$MobTimer.stop()
+	get_tree().call_group("mobs", "queue_free")
 	$HUD.show_game_over()
 	$Music.stop()
-	$DeathSound.play()
 	
 func new_game():
 	score = 0
@@ -32,13 +32,19 @@ func _on_mob_timer_timeout():
 	mob.linear_velocity = velocity.rotated(direction)
 	add_child(mob)
 
-func _on_score_timer_timeout() -> void:
-	score += 1
-	$HUD.update_score(score)
+#func _on_score_timer_timeout() -> void:
+#	score += 1
+#	$HUD.update_score(score)
 
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
-	$ScoreTimer.start()
+	#$ScoreTimer.start()
 
 func _ready():
 	pass
+
+func _on_player_fish_collected() -> void:
+	score += 1
+	$HUD.update_score(score)
+	if score >= TARGET_SCORE:
+		game_over()

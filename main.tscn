@@ -1,31 +1,36 @@
-[gd_scene load_steps=8 format=3 uid="uid://cil7ctsaam1mc"]
+[gd_scene load_steps=9 format=3 uid="uid://cil7ctsaam1mc"]
 
 [ext_resource type="Script" uid="uid://df8fpeokgked6" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cqeljhhlbuer8" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://di2ecjixgqnm1" path="res://Mob.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://dhppw1tnco6ia" path="res://Background.png" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://b4c7fml0d8nfu" path="res://HUD.tscn" id="4_1bvp3"]
-[ext_resource type="AudioStream" uid="uid://cpxs2dfb2s4jm" path="res://House In a Forest Loop.ogg" id="5_lquwl"]
-[ext_resource type="AudioStream" uid="uid://c7ch0fnn2sp8u" path="res://gameover.wav" id="6_7mycd"]
+[ext_resource type="AudioStream" uid="uid://c4alosp5odwxu" path="res://WiiMusic.ogg" id="5_lquwl"]
+[ext_resource type="AudioStream" uid="uid://b3r7h1qk75m1h" path="res://Crunch.ogg" id="6_7mycd"]
 
 [sub_resource type="Curve2D" id="Curve2D_ig7tw"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 176, 0, 0, 0, 0, 0, 176, 184, 0, 0, 0, 0, 0, 184, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 0, 0, 0, 0, 0, 320, 320, 0, 0, 0, 0, 0, 320, 0, 0, 0, 0, 0, 0)
 }
-point_count = 5
+point_count = 6
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
 mob_scene = ExtResource("2_h2yge")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.654902, 0.780392, 0.905882, 1)
+texture = ExtResource("3_272bh")
+stretch_mode = 5
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+
+[node name="CrunchSound" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("6_7mycd")
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -42,16 +47,14 @@ position = Vector2(180, 180)
 curve = SubResource("Curve2D_ig7tw")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(-0.224609, 0)
 
 [node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_lquwl")
 
-[node name="DeathSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_7mycd")
-
-[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="fish_collected" from="Player" to="." method="_on_player_fish_collected"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

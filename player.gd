@@ -1,14 +1,14 @@
 extends Area2D
 
-signal hit
+signal fish_collected
 
 @export var speed = 200
 var screen_size
 
-func _on_body_entered(_body):
-	hide()
-	hit.emit()
-	$CollisionShape2D.set_deferred("disabled", true)
+func _on_body_entered(body):
+	fish_collected.emit()
+	body.queue_free()
+	$CrunchSound.play()
 
 func _ready():
 	screen_size = get_viewport_rect().size
