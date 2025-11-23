@@ -10,10 +10,11 @@ func show_message(text):
 func show_game_over():
 	show_message("You collected 10 fish!")
 	await $MessageTimer.timeout
-	await get_tree().create_timer(4).timeout
-	#$Message.text = "Collect the Fish!"
-	#$Message.show()
-	#$StartButton.show()
+	await get_tree().create_timer(1).timeout
+	$Message.text = "Collect Fish!"
+	$Message.show()
+	$StartButton.show()
+	$ScoreLabel.text = "0"
 
 func update_score(score):
 	$ScoreLabel.text = str(score)

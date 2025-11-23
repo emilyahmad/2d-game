@@ -7,12 +7,11 @@ const TARGET_SCORE := 10
 func game_over():
 	$MobTimer.stop()
 	_clear_all_mobs()
-	#get_tree().call_group("mobs", "queue_free")
+
 	$HUD.show_game_over()
 	$Music.stop()
 	$Winning.play()
 	print("Game over called")
-	get_tree().paused = true
 	
 func new_game():
 	score = 0
@@ -53,3 +52,4 @@ func _on_player_fish_collected() -> void:
 	$HUD.update_score(score)
 	if score >= TARGET_SCORE:
 		game_over()
+		$StartTimer.stop()
