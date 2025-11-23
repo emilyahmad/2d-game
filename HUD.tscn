@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4c7fml0d8nfu"]
+[gd_scene load_steps=5 format=3 uid="uid://b4c7fml0d8nfu"]
 
 [ext_resource type="Script" uid="uid://bk6e2g51yv5dc" path="res://hud.gd" id="1_efote"]
 [ext_resource type="FontFile" uid="uid://c67165jr88n4m" path="res://fonts/Xolonium-Regular.ttf" id="2_vow1y"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_efote"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_vow1y"]
+events = [SubResource("InputEventAction_efote")]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_efote")
@@ -52,6 +58,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_vow1y")
 theme_override_font_sizes/font_size = 16
+shortcut = SubResource("Shortcut_vow1y")
 text = "Start"
 
 [node name="MessageTimer" type="Timer" parent="."]
