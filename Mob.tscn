@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://di2ecjixgqnm1"]
+
+[ext_resource type="Script" uid="uid://ep3kke8tihya" path="res://mob.gd" id="1_6frnq"]
+[ext_resource type="Texture2D" uid="uid://b0im70gr5652w" path="res://mob_up1.png" id="1_r6b5h"]
+[ext_resource type="Texture2D" uid="uid://cokok0t3yhvoe" path="res://mob_up2.png" id="2_6frnq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gguu4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r6b5h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6frnq")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r6b5h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6frnq")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r6b5h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6frnq")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6b5h"]
+size = Vector2(26, 18)
+
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+gravity_scale = 0.0
+script = ExtResource("1_6frnq")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gguu4")
+animation = &"swim"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -1)
+shape = SubResource("RectangleShape2D_r6b5h")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
