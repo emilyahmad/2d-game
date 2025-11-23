@@ -5,11 +5,14 @@ var score
 const TARGET_SCORE := 10
 
 func game_over():
-	#$ScoreTimer.stop()
 	$MobTimer.stop()
-	get_tree().call_group("mobs", "queue_free")
+	_clear_all_mobs()
+	#get_tree().call_group("mobs", "queue_free")
 	$HUD.show_game_over()
 	$Music.stop()
+	$Winning.play()
+	print("Game over called")
+	get_tree().paused = true
 	
 func new_game():
 	score = 0
@@ -17,11 +20,14 @@ func new_game():
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
-	get_tree().call_group("mobs", "queue_free")
+	_clear_all_mobs()
+	#get_tree().call_group("mobs", "queue_free")
 	$Music.play()
 
 func _on_mob_timer_timeout():
 	var mob = mob_scene.instantiate()
+	mob.add_to_group("mobs")
+	
 	var mob_spawn_location = $MobPath/MobSpawnLocation
 	mob_spawn_location.progress_ratio = randf()
 	mob.position = mob_spawn_location.position
@@ -32,13 +38,12 @@ func _on_mob_timer_timeout():
 	mob.linear_velocity = velocity.rotated(direction)
 	add_child(mob)
 
-#func _on_score_timer_timeout() -> void:
-#	score += 1
-#	$HUD.update_score(score)
+func _clear_all_mobs():
+	for mob in get_tree().get_nodes_in_group("mobs"):
+		mob.queue_free()
 
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
-	#$ScoreTimer.start()
 
 func _ready():
 	pass
