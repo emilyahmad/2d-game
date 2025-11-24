@@ -21,15 +21,14 @@ func start(pos):
 
 func _process(delta):
 	var velocity = Vector2.ZERO
-	if Input.is_action_pressed("p1_move_right"):
+	if Input.is_action_pressed("p2_move_right"):
 		velocity.x += 1
-	if Input.is_action_pressed("p1_move_left"):
+	if Input.is_action_pressed("p2_move_left"):
 		velocity.x -= 1
-	if Input.is_action_pressed("p1_move_down"):
+	if Input.is_action_pressed("p2_move_down"):
 		velocity.y += 1
-	if Input.is_action_pressed("p1_move_up"):
+	if Input.is_action_pressed("p2_move_up"):
 		velocity.y -= 1
-	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()

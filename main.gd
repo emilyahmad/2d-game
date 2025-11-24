@@ -2,6 +2,8 @@ extends Node
 
 @export var mob_scene: PackedScene
 var score
+var multi: bool = true
+var player2score
 const TARGET_SCORE := 10
 
 func game_over():
@@ -15,9 +17,17 @@ func game_over():
 	
 func new_game():
 	score = 0
+	player2score = 0
 	$Player.start($StartPosition.position)
+	$Player2.start($StartPosition.position + Vector2(100, 0))
+	
 	$StartTimer.start()
 	$HUD.update_score(score)
+	$HUD.update_score(score)
+	
+	$HUD.update_player2_score(player2score)
+	$HUD.update_player2_score(player2score)
+	
 	$HUD.show_message("Get Ready")
 	_clear_all_mobs()
 	#get_tree().call_group("mobs", "queue_free")
