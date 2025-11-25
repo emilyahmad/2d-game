@@ -2,7 +2,6 @@ extends Node
 
 @export var mob_scene: PackedScene
 var score
-var multi: bool = true
 var player2score
 const TARGET_SCORE := 10
 
@@ -14,11 +13,25 @@ func game_over():
 	$Music.stop()
 	$Winning.play()
 	print("Game over called")
-	
+
 func new_game():
 	score = 0
-	player2score = 0
 	$Player.start($StartPosition.position)
+	$Player2.hide()
+	
+	$StartTimer.start()
+	$HUD.update_score(score)
+	$HUD.update_score(score)
+	
+	$HUD.show_message("Get Ready")
+	_clear_all_mobs()
+	#get_tree().call_group("mobs", "queue_free")
+	$Music.play()
+
+func new_multiplayer_game():
+	score = 0
+	player2score = 0
+	$Player.start($StartPosition.position - Vector2(100, 0))
 	$Player2.start($StartPosition.position + Vector2(100, 0))
 	
 	$StartTimer.start()
@@ -51,15 +64,25 @@ func _clear_all_mobs():
 	for mob in get_tree().get_nodes_in_group("mobs"):
 		mob.queue_free()
 
-func _on_start_timer_timeout() -> void:
+func _on_start_timer_timeout():
 	$MobTimer.start()
 
 func _ready():
 	pass
 
-func _on_player_fish_collected() -> void:
-	score += 1
-	$HUD.update_score(score)
-	if score >= TARGET_SCORE:
+func _on_player_2_fish_collected():
+	player2score += 1
+	$HUD.update_player2_score(player2score)
+	if player2score >= TARGET_SCORE:
 		game_over()
 		$StartTimer.stop()
+
+func _on_hud_start_multiplayer_game():
+	new_multiplayer_game()
+
+func _on_player_fish_collected():
+		score += 1
+		$HUD.update_score(score)
+		if score >= TARGET_SCORE:
+			game_over()
+			$StartTimer.stop()
