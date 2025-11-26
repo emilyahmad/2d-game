@@ -14,6 +14,15 @@ func game_over():
 	$Winning.play()
 	print("Game over called")
 
+func multiplayer_game_over(score, player2score):
+	$MobTimer.stop()
+	_clear_all_mobs()
+
+	$HUD.show_multiplayer_game_over(score, player2score)
+	$Music.stop()
+	$Winning.play()
+	print("Game over called")
+
 func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
@@ -68,13 +77,18 @@ func _on_start_timer_timeout():
 	$MobTimer.start()
 
 func _ready():
-	pass
+	$HUD.stop_music_pressed.connect(_on_stop_music_pressed)
+
+func _on_stop_music_pressed():
+	get_tree().call_group("sounds", "stop")
+	#need to fix when crunch & winning sounds are called
+	
 
 func _on_player_2_fish_collected():
 	player2score += 1
 	$HUD.update_player2_score(player2score)
-	if player2score >= TARGET_SCORE:
-		game_over()
+	if (player2score >= TARGET_SCORE || score >= TARGET_SCORE):
+		multiplayer_game_over(score, player2score)
 		$StartTimer.stop()
 
 func _on_hud_start_multiplayer_game():

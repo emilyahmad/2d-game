@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal start_game
 signal start_multiplayer_game
+signal stop_music_pressed
 
 func show_message(text):
 	$Message.text = text
@@ -9,6 +10,20 @@ func show_message(text):
 	$MessageTimer.start()
 
 func show_game_over():
+	show_message("You collected 10 fish!")
+	await $MessageTimer.timeout
+	await get_tree().create_timer(1).timeout
+	$Message.text = "Collect Fish!"
+	$Message.show()
+	$StartButton.show()
+	$MultiplayerButton.show()
+	$ScoreLabel.text = "0"
+
+func show_multiplayer_game_over(score, player2score):
+	if score > player2score:
+		show_message("Player 2 wins!")
+	else:
+		show_message("Player 1 wins!")
 	show_message("You collected 10 fish!")
 	await $MessageTimer.timeout
 	await get_tree().create_timer(1).timeout
@@ -38,3 +53,6 @@ func _on_multiplayer_button_pressed():
 	$MultiplayerButton.hide()
 	$Player2ScoreLabel.show()
 	start_multiplayer_game.emit()
+
+func _on_mute_label_pressed():
+	stop_music_pressed.emit()

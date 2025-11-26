@@ -31,12 +31,12 @@ stretch_mode = 5
 
 [node name="Player" parent="." instance=ExtResource("4_kek77")]
 
-[node name="Crunch" type="AudioStreamPlayer" parent="Player"]
+[node name="Crunch" type="AudioStreamPlayer" parent="Player" groups=["Sounds"]]
 stream = ExtResource("6_7mycd")
 
 [node name="Player2" parent="." instance=ExtResource("1_ig7tw")]
 
-[node name="Crunch" type="AudioStreamPlayer" parent="Player2"]
+[node name="Crunch" type="AudioStreamPlayer" parent="Player2" groups=["Sounds"]]
 stream = ExtResource("6_7mycd")
 
 [node name="MobTimer" type="Timer" parent="."]
@@ -56,10 +56,10 @@ position = Vector2(-0.224609, 0)
 
 [node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." groups=["Sounds"]]
 stream = ExtResource("7_272bh")
 
-[node name="Winning" type="AudioStreamPlayer" parent="."]
+[node name="Winning" type="AudioStreamPlayer" parent="." groups=["Sounds"]]
 stream = ExtResource("8_5vw27")
 
 [connection signal="fish_collected" from="Player" to="." method="_on_player_fish_collected"]
