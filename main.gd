@@ -3,22 +3,14 @@ extends Node
 @export var mob_scene: PackedScene
 var score
 var player2score
-const TARGET_SCORE := 10
+const TARGET_SCORE := 3
+var multi = false
 
 func game_over():
 	$MobTimer.stop()
 	_clear_all_mobs()
 
 	$HUD.show_game_over()
-	$Music.stop()
-	$Winning.play()
-	print("Game over called")
-
-func multiplayer_game_over(score, player2score):
-	$MobTimer.stop()
-	_clear_all_mobs()
-
-	$HUD.show_multiplayer_game_over(score, player2score)
 	$Music.stop()
 	$Winning.play()
 	print("Game over called")
@@ -38,6 +30,7 @@ func new_game():
 	$Music.play()
 
 func new_multiplayer_game():
+	multi = true
 	score = 0
 	player2score = 0
 	$Player.start($StartPosition.position - Vector2(100, 0))
@@ -52,7 +45,6 @@ func new_multiplayer_game():
 	
 	$HUD.show_message("Get Ready")
 	_clear_all_mobs()
-	#get_tree().call_group("mobs", "queue_free")
 	$Music.play()
 
 func _on_mob_timer_timeout():
@@ -80,15 +72,16 @@ func _ready():
 	$HUD.stop_music_pressed.connect(_on_stop_music_pressed)
 
 func _on_stop_music_pressed():
-	get_tree().call_group("sounds", "stop")
-	#need to fix when crunch & winning sounds are called
-	
+	var master = AudioServer.get_bus_index("Master")
+	var isMuted = AudioServer.is_bus_mute(master)
+	AudioServer.set_bus_mute(master, !isMuted)
 
 func _on_player_2_fish_collected():
 	player2score += 1
 	$HUD.update_player2_score(player2score)
-	if (player2score >= TARGET_SCORE || score >= TARGET_SCORE):
-		multiplayer_game_over(score, player2score)
+	if player2score >= TARGET_SCORE:
+		check_winner()
+		multiplayer_game_over()
 		$StartTimer.stop()
 
 func _on_hud_start_multiplayer_game():
@@ -98,5 +91,25 @@ func _on_player_fish_collected():
 		score += 1
 		$HUD.update_score(score)
 		if score >= TARGET_SCORE:
-			game_over()
+			if (multi == true):
+				check_winner()
+				multiplayer_game_over()
+			else:
+				game_over()
 			$StartTimer.stop()
+
+func check_winner():
+	if score >= TARGET_SCORE and player2score >= TARGET_SCORE:
+		$HUD._display_winner("Tie")
+	elif score >= TARGET_SCORE:
+		$HUD._display_winner("Player 2 wins!")
+	elif player2score >= TARGET_SCORE:
+		$HUD._display_winner("Player 1 wins!")
+
+func multiplayer_game_over():
+	$MobTimer.stop()
+	_clear_all_mobs()
+
+	$HUD.show_multiplayer_game_over()
+	$Music.stop()
+	$Winning.play()

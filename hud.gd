@@ -4,6 +4,8 @@ signal start_game
 signal start_multiplayer_game
 signal stop_music_pressed
 
+var winner_text;
+
 func show_message(text):
 	$Message.text = text
 	$Message.show()
@@ -19,12 +21,11 @@ func show_game_over():
 	$MultiplayerButton.show()
 	$ScoreLabel.text = "0"
 
-func show_multiplayer_game_over(score, player2score):
-	if score > player2score:
-		show_message("Player 2 wins!")
-	else:
-		show_message("Player 1 wins!")
-	show_message("You collected 10 fish!")
+func _display_winner(text):
+	winner_text = text
+
+func show_multiplayer_game_over():
+	show_message(winner_text)
 	await $MessageTimer.timeout
 	await get_tree().create_timer(1).timeout
 	$Message.text = "Collect Fish!"
