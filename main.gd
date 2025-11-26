@@ -102,9 +102,9 @@ func check_winner():
 	if score >= TARGET_SCORE and player2score >= TARGET_SCORE:
 		$HUD._display_winner("Tie")
 	elif score >= TARGET_SCORE:
-		$HUD._display_winner("Player 2 wins!")
-	elif player2score >= TARGET_SCORE:
 		$HUD._display_winner("Player 1 wins!")
+	elif player2score >= TARGET_SCORE:
+		$HUD._display_winner("Player 2 wins!")
 
 func multiplayer_game_over():
 	$MobTimer.stop()

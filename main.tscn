@@ -29,14 +29,14 @@ grow_vertical = 2
 texture = ExtResource("3_272bh")
 stretch_mode = 5
 
-[node name="Player" parent="." instance=ExtResource("4_kek77")]
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 
-[node name="Crunch" type="AudioStreamPlayer" parent="Player" groups=["Sounds"]]
+[node name="Crunch" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("6_7mycd")
 
-[node name="Player2" parent="." instance=ExtResource("1_ig7tw")]
+[node name="Player2" parent="." instance=ExtResource("4_kek77")]
 
-[node name="Crunch" type="AudioStreamPlayer" parent="Player2" groups=["Sounds"]]
+[node name="Crunch" type="AudioStreamPlayer" parent="Player2"]
 stream = ExtResource("6_7mycd")
 
 [node name="MobTimer" type="Timer" parent="."]
@@ -63,7 +63,6 @@ stream = ExtResource("7_272bh")
 stream = ExtResource("8_5vw27")
 
 [connection signal="fish_collected" from="Player" to="." method="_on_player_fish_collected"]
-[connection signal="body_entered" from="Player2" to="." method="_on_player_2_body_entered"]
 [connection signal="fish_collected" from="Player2" to="." method="_on_player_2_fish_collected"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
