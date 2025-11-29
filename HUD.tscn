@@ -10,6 +10,7 @@ action = &"start_game"
 events = [SubResource("InputEventAction_efote")]
 
 [node name="HUD" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_efote")
 
 [node name="ScoreLabel" type="Label" parent="."]
@@ -106,7 +107,26 @@ theme_override_fonts/font = ExtResource("2_vow1y")
 theme_override_font_sizes/font_size = 16
 text = "Mute"
 
+[node name="Pause" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -312.0
+offset_right = 88.0
+offset_bottom = -284.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_vow1y")
+theme_override_font_sizes/font_size = 16
+shortcut = SubResource("Shortcut_vow1y")
+text = "II"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="pressed" from="MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
 [connection signal="pressed" from="MuteLabel" to="." method="_on_mute_label_pressed"]
+[connection signal="pressed" from="Pause" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Pause" to="." method="_on_pause_pressed"]

@@ -3,6 +3,7 @@ extends CanvasLayer
 signal start_game
 signal start_multiplayer_game
 signal stop_music_pressed
+signal pause_toggled
 
 var winner_text;
 
@@ -57,3 +58,6 @@ func _on_multiplayer_button_pressed():
 
 func _on_mute_label_pressed():
 	stop_music_pressed.emit()
+
+func _on_pause_pressed():
+	pause_toggled.emit()
