@@ -5,7 +5,6 @@ var score
 var player2score
 const TARGET_SCORE := 10
 var multi = false
-var is_paused := false
 
 func game_over():
 	$MobTimer.stop()
@@ -71,15 +70,6 @@ func _on_start_timer_timeout():
 
 func _ready():
 	$HUD.stop_music_pressed.connect(_on_stop_music_pressed)
-	$HUD.pause_toggled.connect(_on_pause_toggled)
-
-func _on_pause_toggled():
-	is_paused = !is_paused
-	get_tree().paused = is_paused
-	
-	var master = AudioServer.get_bus_index("Master")
-	var isMuted = AudioServer.is_bus_mute(master)
-	AudioServer.set_bus_mute(master, !isMuted)
 
 func _on_stop_music_pressed():
 	var master = AudioServer.get_bus_index("Master")

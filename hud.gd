@@ -58,6 +58,3 @@ func _on_multiplayer_button_pressed():
 
 func _on_mute_label_pressed():
 	stop_music_pressed.emit()
-
-func _on_pause_pressed():
-	pause_toggled.emit()
