@@ -1,19 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqeljhhlbuer8"]
+[gd_scene load_steps=6 format=3 uid="uid://cqeljhhlbuer8"]
 
-[ext_resource type="Texture2D" uid="uid://ucuh2lji20o4" path="res://player_up1.png" id="1_hqtel"]
-[ext_resource type="Texture2D" uid="uid://c1pqyf0wdv1yy" path="res://player_walk1.png" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://dy5rm8hhci0v2" path="res://player.gd" id="1_sweqy"]
-[ext_resource type="Texture2D" uid="uid://bbqywsoqghm2l" path="res://player_walk2.png" id="2_i3pqv"]
-[ext_resource type="Texture2D" uid="uid://c3ds3xvslbou" path="res://player_up2.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://b45x4hxrdgbfc" path="res://Screenshot 2025-12-21 at 8.55.56 PM-1.png (1).png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://jctle4f36yeq" path="res://Screenshot 2025-12-21 at 8.55.56 PM-2.png.png" id="3_hqtel"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hqtel"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_hqtel")
+"texture": ExtResource("2_i3pqv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_sweqy")
+"texture": ExtResource("3_hqtel")
 }],
 "loop": true,
 "name": &"up",
@@ -21,10 +19,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_onrkg")
+"texture": ExtResource("2_i3pqv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_i3pqv")
+"texture": ExtResource("3_hqtel")
 }],
 "loop": true,
 "name": &"walk",

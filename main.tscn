@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://df8fpeokgked6" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cqeljhhlbuer8" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://di2ecjixgqnm1" path="res://Mob.tscn" id="2_h2yge"]
-[ext_resource type="Texture2D" uid="uid://dhppw1tnco6ia" path="res://Background.png" id="3_272bh"]
+[ext_resource type="Texture2D" uid="uid://f63ow125cxrq" path="res://sub.png" id="3_kek77"]
 [ext_resource type="PackedScene" uid="uid://b4c7fml0d8nfu" path="res://HUD.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://b0iuf6aphgio8" path="res://player2.tscn" id="4_kek77"]
 [ext_resource type="AudioStream" uid="uid://b3r7h1qk75m1h" path="res://Crunch.ogg" id="6_7mycd"]
@@ -26,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_272bh")
+texture = ExtResource("3_kek77")
 stretch_mode = 5
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]

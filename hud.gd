@@ -13,10 +13,10 @@ func show_message(text):
 	$MessageTimer.start()
 
 func show_game_over():
-	show_message("You collected 10 fish!")
+	show_message("You caught 10 rats!")
 	await $MessageTimer.timeout
 	await get_tree().create_timer(1).timeout
-	$Message.text = "Collect Fish!"
+	$Message.text = "Catch the Rats!"
 	$Message.show()
 	$StartButton.show()
 	$MultiplayerButton.show()
@@ -29,7 +29,7 @@ func show_multiplayer_game_over():
 	show_message(winner_text)
 	await $MessageTimer.timeout
 	await get_tree().create_timer(1).timeout
-	$Message.text = "Collect Fish!"
+	$Message.text = "Catch Rats!"
 	$Message.show()
 	$StartButton.show()
 	$MultiplayerButton.show()

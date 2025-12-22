@@ -52,7 +52,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vow1y")
 theme_override_font_sizes/font_size = 16
-text = "Collect the fish!
+text = "Catch the Rats!
 Use AWSD for Player 1 (Yellow), Arrow keys for Player 2 (Purple)"
 horizontal_alignment = 1
 vertical_alignment = 1
