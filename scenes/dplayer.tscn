@@ -8,6 +8,7 @@ size = Vector2(128, 128)
 
 [node name="Dplayer" type="CharacterBody2D"]
 script = ExtResource("1_lgg6h")
+jump_force = -500
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -64)
@@ -18,3 +19,6 @@ texture = ExtResource("1_8dpxn")
 position = Vector2(0, -64)
 scale = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_lgg6h")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -58)
