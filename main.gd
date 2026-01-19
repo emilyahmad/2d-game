@@ -113,3 +113,8 @@ func multiplayer_game_over():
 	$HUD.show_multiplayer_game_over()
 	$Music.stop()
 	$Winning.play()
+
+
+#button to platformer (remove later)/just for testing
+func _on_to_platform_screen_pressed() -> void:
+	get_tree().change_scene_to_file("res://world.tscn")

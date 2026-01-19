@@ -62,9 +62,16 @@ stream = ExtResource("7_272bh")
 [node name="Winning" type="AudioStreamPlayer" parent="." groups=["Sounds"]]
 stream = ExtResource("8_5vw27")
 
+[node name="ToPlatformScreen" type="Button" parent="."]
+offset_left = 56.0
+offset_top = 48.0
+offset_right = 248.0
+offset_bottom = 96.0
+
 [connection signal="fish_collected" from="Player" to="." method="_on_player_fish_collected"]
 [connection signal="fish_collected" from="Player2" to="." method="_on_player_2_fish_collected"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="start_multiplayer_game" from="HUD" to="." method="_on_hud_start_multiplayer_game"]
+[connection signal="pressed" from="ToPlatformScreen" to="." method="_on_to_platform_screen_pressed"]
