@@ -6,10 +6,15 @@ var score
 func _ready():
 	new_game()
 
-func _on_player_hit() -> void:
-	score += 1
+func game_over() -> void:
+	$ScoreTimer.stop()
+	$MobTimer.stop()
+	$HUDa.show_game_over()
 
 func new_game():
+	get_tree().call_group("mobs", "queue_free")
+	$HUDa.update_score(score)
+	$HUDa.show_message("Get Ready")
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
@@ -39,6 +44,10 @@ func _on_mob_timer_timeout() -> void:
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
 
+func _on_score_timer_timeout() -> void:
+	score += 1
+	$HUDa.update_score(score)
 
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
+	$ScoreTimer.start()

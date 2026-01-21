@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c4aaqufb6ipv5"]
 
-[ext_resource type="Script" uid="uid://b6mlfobyjx2om" path="res://hud_c.gd" id="1_l2x7g"]
+[ext_resource type="Script" uid="uid://b6mlfobyjx2om" path="res://scripts/hud_c.gd" id="1_l2x7g"]
 
 [node name="HUDc" type="CanvasLayer"]
 script = ExtResource("1_l2x7g")
@@ -46,6 +46,7 @@ offset_top = -111.0
 offset_right = 92.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 75
 text = "Start"
 
