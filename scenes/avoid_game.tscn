@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://cst4nwyc2nwtm"]
 
-[ext_resource type="Texture2D" uid="uid://cvnm0rqhv1b0p" path="res://HUD/Backgrounds/LobbyBackground.png" id="1_c7mol"]
+[ext_resource type="Texture2D" uid="uid://cvnm0rqhv1b0p" path="res://HUD/Backgrounds/LobbyBackground.png" id="1_ta0et"]
 
 [node name="AvoidGame" type="Node2D"]
 
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("1_c7mol")
+texture = ExtResource("1_ta0et")

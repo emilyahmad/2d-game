@@ -30,7 +30,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
-size = Vector2(24, 26)
+size = Vector2(26, 30)
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_sweqy")
@@ -41,7 +41,7 @@ sprite_frames = SubResource("SpriteFrames_hqtel")
 animation = &"up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_hqtel")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccawq6hlurp47"]
+
+[ext_resource type="Script" uid="uid://rhej4thy6cci" path="res://scripts/collect_game.gd" id="1_q01pv"]
+[ext_resource type="Texture2D" uid="uid://cvnm0rqhv1b0p" path="res://HUD/Backgrounds/LobbyBackground.png" id="2_g7je8"]
+[ext_resource type="PackedScene" uid="uid://cqeljhhlbuer8" path="res://player.tscn" id="3_7u0fu"]
+[ext_resource type="AudioStream" uid="uid://b3r7h1qk75m1h" path="res://Crunch.ogg" id="4_d1dk8"]
+[ext_resource type="PackedScene" uid="uid://b4c7fml0d8nfu" path="res://Scenes/HUD.tscn" id="6_06r1e"]
+[ext_resource type="AudioStream" uid="uid://bmdbj4je5q82u" path="res://Music.ogg" id="7_lef8e"]
+[ext_resource type="AudioStream" uid="uid://bm5o3keskyvao" path="res://Winning.ogg" id="8_1d4rx"]
+
+[sub_resource type="Curve2D" id="Curve2D_dh55q"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 0, 0, 0, 0, 0, 320, 320, 0, 0, 0, 0, 0, 320, 0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[node name="CollectGame" type="Node2D"]
+script = ExtResource("1_q01pv")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_g7je8")
+
+[node name="Player" parent="." instance=ExtResource("3_7u0fu")]
+speed = null
+
+[node name="Crunch" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("4_d1dk8")
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(180, 180)
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_dh55q")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(-0.224609, 0)
+
+[node name="HUD" parent="." instance=ExtResource("6_06r1e")]
+
+[node name="Music" type="AudioStreamPlayer" parent="." groups=["Sounds"]]
+stream = ExtResource("7_lef8e")
+
+[node name="Winning" type="AudioStreamPlayer" parent="." groups=["Sounds"]]
+stream = ExtResource("8_1d4rx")
