@@ -14,28 +14,13 @@ process_mode = 3
 script = ExtResource("1_efote")
 
 [node name="ScoreLabel" type="Label" parent="."]
-offset_left = 8.0
+offset_left = 24.0
 offset_top = 8.0
-offset_right = 72.0
-offset_bottom = 28.0
+offset_right = 88.0
+offset_bottom = 57.0
 theme_override_fonts/font = ExtResource("2_vow1y")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 40
 text = "0"
-vertical_alignment = 1
-
-[node name="Player2ScoreLabel" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -144.0
-offset_top = 8.0
-offset_right = -80.0
-offset_bottom = 28.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_vow1y")
-theme_override_font_sizes/font_size = 16
-text = "0"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Message" type="Label" parent="."]
@@ -44,16 +29,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -118.0
-offset_top = -44.5
-offset_right = 118.0
-offset_bottom = 44.5
+offset_left = -400.0
+offset_top = -296.0
+offset_right = 400.0
+offset_bottom = 309.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vow1y")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 60
 text = "Catch the Rats!
-Use AWSD for Player 1 (Yellow), Arrow keys for Player 2 (Purple)"
+Use AWSD to move around the screen."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -64,13 +49,15 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = -28.0
-offset_right = -12.0
+offset_left = -64.0
+offset_top = -72.0
+offset_right = 50.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_vow1y")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 40
 shortcut = SubResource("Shortcut_vow1y")
 text = "Start"
 
@@ -78,36 +65,20 @@ text = "Start"
 wait_time = 2.0
 one_shot = true
 
-[node name="MultiplayerButton" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = 132.0
-offset_right = 100.0
-offset_bottom = 160.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_vow1y")
-theme_override_font_sizes/font_size = 16
-text = "Multiplayer"
-
 [node name="MuteLabel" type="Button" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -64.0
-offset_top = 8.0
-offset_right = -6.0
-offset_bottom = 36.0
+offset_left = -136.0
+offset_top = 24.0
+offset_right = -32.0
+offset_bottom = 75.0
 grow_horizontal = 0
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_vow1y")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 35
 text = "Mute"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
-[connection signal="pressed" from="MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
 [connection signal="pressed" from="MuteLabel" to="." method="_on_mute_label_pressed"]

@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://bcqj2vyos5kgl"]
+[gd_scene load_steps=2 format=3 uid="uid://bcqj2vyos5kgl"]
+
+[ext_resource type="Texture2D" uid="uid://cvnm0rqhv1b0p" path="res://HUD/Backgrounds/LobbyBackground.png" id="1_7ev41"]
 
 [node name="PlatformGame" type="Node2D"]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_7ev41")
