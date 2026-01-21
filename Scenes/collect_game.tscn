@@ -40,7 +40,7 @@ curve = SubResource("Curve2D_8vm6b")
 
 [node name="HUDc" parent="." instance=ExtResource("5_g7je8")]
 
-[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="hit_mob" from="Player" to="." method="_on_player_hit_mob"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="start_game" from="HUDc" to="." method="new_game"]

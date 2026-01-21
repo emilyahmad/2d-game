@@ -8,10 +8,11 @@ func show_message(text):
 
 func show_game_over():
 	show_message("Game Over")
+	$ScoreLabel.text = "0"
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
 
-	$Message.text = "Catch the Rats! Use AWSD to move"
+	$Message.text = "Avoid the Rats! Use AWSD to move"
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(1.0).timeout

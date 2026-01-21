@@ -1,8 +1,8 @@
 extends Area2D
 
-signal hit
+signal hit_mob(mob)
 
-@export var speed = 400 # How fast the player will move (pixels/sec).
+@export var speed = 600 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 
 func _ready():
@@ -40,9 +40,8 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	hit.emit()
-	# Must be deferred as we can't change physics properties on a physics callback.
-	$CollisionShape2D.set_deferred("disabled", true)
+	if body.is_in_group("mobs"):
+		hit_mob.emit(body)
 
 func start(pos):
 	position = pos
