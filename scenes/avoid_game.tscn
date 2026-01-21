@@ -1,10 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://cst4nwyc2nwtm"]
+[gd_scene load_steps=10 format=3 uid="uid://cst4nwyc2nwtm"]
 
+[ext_resource type="Script" uid="uid://b2p6rokdmj1us" path="res://scripts/avoid_game.gd" id="1_dqhux"]
 [ext_resource type="Texture2D" uid="uid://cvnm0rqhv1b0p" path="res://HUD/Backgrounds/LobbyBackground.png" id="1_ta0et"]
+[ext_resource type="PackedScene" uid="uid://c2t6jijwdjhxj" path="res://aplayer.tscn" id="2_qnjbb"]
+[ext_resource type="PackedScene" uid="uid://di2ecjixgqnm1" path="res://Mob.tscn" id="2_wfphw"]
+[ext_resource type="AudioStream" uid="uid://b3r7h1qk75m1h" path="res://Crunch.ogg" id="3_7wn7o"]
+[ext_resource type="PackedScene" uid="uid://dlwmve3vd3rxp" path="res://HUDa.tscn" id="4_g0i14"]
+[ext_resource type="AudioStream" uid="uid://bmdbj4je5q82u" path="res://Music.ogg" id="5_dqhux"]
+[ext_resource type="AudioStream" uid="uid://bm5o3keskyvao" path="res://Winning.ogg" id="6_wfphw"]
+
+[sub_resource type="Curve2D" id="Curve2D_w6xj7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1280, 0, 0, 0, 0, 0, 1280, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0)
+}
+point_count = 6
 
 [node name="AvoidGame" type="Node2D"]
+script = ExtResource("1_dqhux")
+mob_scene = ExtResource("2_wfphw")
 
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_ta0et")
+
+[node name="aplayer" parent="." instance=ExtResource("2_qnjbb")]
+
+[node name="Crunch" type="AudioStreamPlayer" parent="aplayer"]
+stream = ExtResource("3_7wn7o")
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_w6xj7")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(-0.229492, 0)
+
+[node name="HUD-AVOID" parent="." instance=ExtResource("4_g0i14")]
+
+[node name="Music" type="AudioStreamPlayer" parent="." groups=["Sounds"]]
+stream = ExtResource("5_dqhux")
+
+[node name="Winning" type="AudioStreamPlayer" parent="." groups=["Sounds"]]
+stream = ExtResource("6_wfphw")
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(180, 180)
+
+[connection signal="hit" from="aplayer" to="." method="game_over"]
