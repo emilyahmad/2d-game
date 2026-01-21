@@ -30,8 +30,9 @@ offset_bottom = 104.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 75
-text = "Avoid the rats,
-use AWSD to move"
+text = "Catch the Rats!
+Use AWSD to extract
+revenge"
 horizontal_alignment = 1
 vertical_alignment = 1
 
