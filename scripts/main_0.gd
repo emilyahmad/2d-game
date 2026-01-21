@@ -1,4 +1,6 @@
-extends Node2D
+extends Area2D
+
+signal hit
 
 @onready var background: TextureRect = $Background
 
