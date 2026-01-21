@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cst4nwyc2nwtm"]
+
+[node name="AvoidGame" type="Node2D"]

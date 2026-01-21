@@ -24,25 +24,31 @@ offset_bottom = 525.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("2_qwuyc")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="Game1Btn" type="TextureButton" parent="."]
 offset_left = 120.0
 offset_top = 223.0
 offset_right = 434.0
 offset_bottom = 537.0
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("4_otahk")
 
-[node name="TextureButton2" type="TextureButton" parent="."]
+[node name="Game2Btn" type="TextureButton" parent="."]
 offset_left = 487.0
 offset_top = 223.0
 offset_right = 801.0
 offset_bottom = 537.0
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("5_5l51k")
 
-[node name="TextureButton3" type="TextureButton" parent="."]
-offset_left = 857.0
+[node name="Game3Btn" type="TextureButton" parent="."]
+offset_left = 858.0
 offset_top = 223.0
-offset_right = 1171.0
+offset_right = 1172.0
 offset_bottom = 537.0
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_0c5jm")
 
 [connection signal="pressed" from="StartBtn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="Game1Btn" to="." method="_on_game_1_btn_pressed"]
+[connection signal="pressed" from="Game2Btn" to="." method="_on_game_2_btn_pressed"]
+[connection signal="pressed" from="Game3Btn" to="." method="_on_game_3_btn_pressed"]
