@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b40ccspx5t5e6"]
 
-[ext_resource type="Script" uid="uid://y6vp11gpslro" path="res://main_0.gd" id="1_qwuyc"]
+[ext_resource type="Script" uid="uid://y6vp11gpslro" path="res://scripts/main_0.gd" id="1_qwuyc"]
 [ext_resource type="Texture2D" uid="uid://ch840be28pxxc" path="res://HUD/Buttons/Start.png" id="2_qwuyc"]
 [ext_resource type="Texture2D" uid="uid://cvnm0rqhv1b0p" path="res://HUD/Backgrounds/LobbyBackground.png" id="2_tyn4e"]
 [ext_resource type="Texture2D" uid="uid://rmlc0p7pogbr" path="res://HUD/Minigames/1.png" id="4_otahk"]
