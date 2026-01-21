@@ -1,6 +1,9 @@
 extends Node
 
+signal won
+
 @export var mob_scene: PackedScene
+var allScores := 0
 var score := 0
 
 func _ready():
@@ -44,3 +47,4 @@ func _on_player_hit_mob(mob: Variant) -> void:
 		mob.queue_free()
 	else:
 		game_over()
+		won.emit()

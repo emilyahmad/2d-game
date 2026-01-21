@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ddniagx5hs8hl" path="res://scripts/avoid_game.gd" id="1_w6xj7"]
 [ext_resource type="PackedScene" uid="uid://dfgbx6h5baf5v" path="res://mob.tscn" id="2_g0i14"]
-[ext_resource type="Texture2D" uid="uid://da8wd3qt4kpim" path="res://HUD/Backgrounds/MinigameBackground.png" id="3_dqhux"]
+[ext_resource type="Texture2D" uid="uid://dqj8kaa3taeru" path="res://HUD/Backgrounds/SecondGameBackground.png" id="3_w6xj7"]
 [ext_resource type="PackedScene" uid="uid://cqeljhhlbuer8" path="res://Scenes/player.tscn" id="4_wfphw"]
 [ext_resource type="PackedScene" uid="uid://dyi8ku3tq2aw5" path="res://Scenes/hud_a.tscn" id="5_ri1pm"]
 
@@ -19,7 +19,7 @@ mob_scene = ExtResource("2_g0i14")
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("3_dqhux")
+texture = ExtResource("3_w6xj7")
 
 [node name="Player" parent="." instance=ExtResource("4_wfphw")]
 
