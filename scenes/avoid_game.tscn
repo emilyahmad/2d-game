@@ -35,7 +35,7 @@ curve = SubResource("Curve2D_w6xj7")
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2(-0.229492, 0)
 
-[node name="HUD-AVOID" parent="." instance=ExtResource("4_g0i14")]
+[node name="HUDa" parent="." instance=ExtResource("4_g0i14")]
 
 [node name="Music" type="AudioStreamPlayer" parent="." groups=["Sounds"]]
 stream = ExtResource("5_dqhux")
@@ -53,6 +53,10 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(180, 180)
+position = Vector2(628, 520)
 
 [connection signal="hit" from="aplayer" to="." method="game_over"]
+[connection signal="start_game" from="HUDa" to="." method="_on_hudavoid_start_game"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

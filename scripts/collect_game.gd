@@ -1,93 +1,78 @@
 extends Node
 
 @export var mob_scene: PackedScene
-var score
 
 const TARGET_SCORE := 10
+var score: int = 0
 
-func game_over():
-	$MobTimer.stop()
+
+func _ready() -> void:
+	new_game()
+
+
+func new_game() -> void:
+	score = 0
+	$HUD.update_score(score)
+	$HUD.show_message("Get Ready")
+
 	_clear_all_mobs()
+
+	$Player.start($StartPosition.position)
+	$StartTimer.start()
+	$Music.play()
+
+
+func game_over() -> void:
+	$ScoreTimer.stop()
+	$MobTimer.stop()
+	$StartTimer.stop()
+
+	_clear_all_mobs() # <-- mobs disappear here
 
 	$HUD.show_game_over()
 	$Music.stop()
 	$Winning.play()
-	print("Game over called")
-	
-#
-#func new_game():
-	#score = 0
-	#$Player.start($StartPosition.position)
-	#$Player2.hide()
-	#
-	#$StartTimer.start()
-	#$HUD.update_score(score)
-	#$HUD.update_score(score)
-	#
-	#$HUD.show_message("Get Ready")
-	#_clear_all_mobs()
-	##get_tree().call_group("mobs", "queue_free")
-	#$Music.play()
-#
-#func new_multiplayer_game():
-	#score = 0
-	#$Player.start($StartPosition.position - Vector2(100, 0))
-	#
-	#$StartTimer.start()
-	#$HUD.update_score(score)
-	#$HUD.update_score(score)
-	#
-	#$HUD.show_message("Get Ready")
-	#_clear_all_mobs()
-	#$Music.play()
-#
-#func _on_mob_timer_timeout():
-	#var mob = mob_scene.instantiate()
-	#mob.add_to_group("mobs")
-	#
-	#var mob_spawn_location = $MobPath/MobSpawnLocation
-	#mob_spawn_location.progress_ratio = randf()
-	#mob.position = mob_spawn_location.position
-	#var direction = mob_spawn_location.rotation + PI/2
-	#direction += randf_range(-PI/4, PI/4)
-	#mob.rotation = direction
-	#var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
-	#mob.linear_velocity = velocity.rotated(direction)
-	#add_child(mob)
-#
-func _clear_all_mobs():
-	for mob in get_tree().get_nodes_in_group("mobs"):
-		mob.queue_free()
 
-#func _on_start_timer_timeout():
-	#$MobTimer.start()
-#
-#func _ready():
-	#$HUD.stop_music_pressed.connect(_on_stop_music_pressed)
-#
-#func _on_stop_music_pressed():
-	#var master = AudioServer.get_bus_index("Master")
-	#var isMuted = AudioServer.is_bus_mute(master)
-	#AudioServer.set_bus_mute(master, !isMuted)
-#
-#func _on_hud_start_multiplayer_game():
-	#new_multiplayer_game()
-#
-#func _on_player_fish_collected():
-		#score += 1
-		#$HUD.update_score(score)
-		#if score >= TARGET_SCORE:
-			#game_over()
-			#$StartTimer.stop()
-#
-##button to platformer (remove later)/just for testing
-#func _on_to_platform_screen_pressed() -> void:
-	#get_tree().change_scene_to_file("res://world.tscn")
+
+func _clear_all_mobs() -> void:
+	get_tree().call_group("mobs", "queue_free")
+
+
+func _on_start_timer_timeout() -> void:
+	$MobTimer.start()
+	$ScoreTimer.start()
+
+
+func _on_mob_timer_timeout() -> void:
+	if mob_scene == null:
+		push_error("mob_scene is not assigned in the Inspector.")
+		return
+
+	var mob = mob_scene.instantiate()
+
+	var spawn = $MobPath/MobSpawnLocation
+	spawn.progress_ratio = randf()
+
+	mob.position = spawn.position
+
+	var direction = spawn.rotation + PI / 2
+	direction += randf_range(-PI / 4, PI / 4)
+	mob.rotation = direction
+
+	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	mob.linear_velocity = velocity.rotated(direction)
+
+	mob.add_to_group("mobs") # so we can delete them at game_over
+	add_child(mob)
 
 
 func _on_player_hit() -> void:
 	score += 1
 	$HUD.update_score(score)
+
 	if score >= TARGET_SCORE:
 		game_over()
-		$StartTimer.stop()
+
+
+func _on_hud_start_game() -> void:
+	new_game()
